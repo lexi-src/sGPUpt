@@ -377,6 +377,11 @@ function compile_checks()
     touch /etc/sGPUpt/install-status.txt
   fi
 
+  # Create Symlink of usr/share/X11/xkb/symbols/ara to ar (Fix for Compiling QEMU)
+  if [[ ! -e "/usr/share/X11/xkb/symbols/ar" ]]; then
+    sudo ln -s /usr/share/X11/xkb/symbols/ara /usr/share/X11/xkb/symbols/ar
+  fi
+  
   # Compile if file doesn't exist.
   if [[ ! -e "${qemu_dir}/build/qemu-system-x86_64" ]]; then
     qemu_compile
